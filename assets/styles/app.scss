@@ -1,0 +1,53 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./include/nav_bar";
+@import "./include/section";
+@import "./include/about";
+@import "./include/resume";
+@import "./include/portfolio";
+@import "./include/contact";
+@import "./include/footer";
+// @import '~@fortawesome/fontawesome-free/scss/regular';
+// @import '~@fortawesome/fontawesome-free/scss/solid';
+// @import '~@fortawesome/fontawesome-free/scss/brands';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html,body{
+    height: 100%;
+    scroll-behavior: smooth;
+    background-color: #1d1d1d;
+}
+
+//  Hearder Section 
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9997;
+    transition: all 0.5s;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+@media (max-width: 991px) {
+    #header {
+        width: 300px;
+        background: #fff;
+        border-right: 1px solid #181818;
+        left: -300px;
+    }
+}
+
+@media (min-width: 991px) {
+    #main {
+        margin-left: 100px;
+    }
+}
+
+

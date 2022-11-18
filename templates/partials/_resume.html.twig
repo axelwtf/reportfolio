@@ -1,0 +1,30 @@
+<!-- ======= Resume Section ======= -->
+<section id="resume" class="resume">
+	<div class="container" data-aos="fade-up">
+
+		<div class="section-title">
+			<h2>Skills</h2>
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-6">
+				<div class="text">My creative skills & experiences.</div>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, ratione error est recusandae consequatur, iusto illum deleniti quidem impedit, quos quaerat quis minima sequi. Cupiditate recusandae laudantium esse, harum animi aspernatur quisquam et delectus ipsum quam alias quaerat? Quasi hic quidem illum. Ad delectus natus aut hic explicabo minus quod.</p>
+			</div>
+
+			<div class="col-lg-6">
+				{% for skill in skills %}
+					<div class="bars">
+						<div class="info">
+							<span><img src="{{ vich_uploader_asset(skill, 'imageFile') }}" alt="{{ skill.name }}-logo " class="skillImg" width="60px" height="60px"></span>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		</div>
+
+	</div>
+</section>
+<!-- End Resume Section -->

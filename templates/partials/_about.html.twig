@@ -1,0 +1,24 @@
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+	<div class="container" data-aos="fade-up">
+
+		<div class="section-title">
+			<h2>About Me</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4">
+			<img src="{{ vich_uploader_asset(user, 'imageFile') }}" class="img-fluid" alt="{{user.imageName}}">
+			</div>
+			<div class="col-lg-8 pt-4 pt-lg-0 content">
+				<h3>Web Developer FrontEnd &amp; BackEnd</h3>
+				<p class="fst-italic">
+					{{ user.about|raw }}
+				</p>
+				<a href="#">Download CV</a>
+			</div>
+		</div>
+
+	</div>
+</section>
+<!-- End About Section -->
