@@ -20,7 +20,7 @@ class ContactType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class' => 'form-control',
+                'class' => 'form-control input',
                 'minlenght' => '2',
                 'maxlenght' => '50',
                 'placeholder' => 'Name'
@@ -31,7 +31,7 @@ class ContactType extends AbstractType
         ])
         ->add('email', EmailType::class, [
             'attr' => [
-                'class' => 'form-control',
+                'class' => 'form-control input',
                 'minlenght' => '2',
                 'maxlenght' => '180',
                 'placeholder' => 'email'
@@ -45,7 +45,7 @@ class ContactType extends AbstractType
         ->add('subject', TextType::class,
             [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control input',
                     'minlenght' => '2',
                     'maxlenght' => '100',
                     'placeholder' => 'subject'
@@ -60,7 +60,7 @@ class ContactType extends AbstractType
             TextareaType::class,
             [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control textarea',
                     'placeholder' => 'Your message'
                 ],
                 'constraints' => [

@@ -1,8 +1,11 @@
 import GLightbox from 'glightbox';
 import Swiper from 'swiper';
 import PureCounter from "@srexi/purecounterjs";
+import AOS from 'aos';
+import Typed from 'typed.js';
 
 var Isotope = require('isotope-layout');
+
 
 
 (function () {
@@ -72,6 +75,21 @@ var Isotope = require('isotope-layout');
     })
   }
 
+  /**
+   * Back to top button
+   */
+  let backtotop = select('.back-to-top')
+  if (backtotop) {
+    const toggleBacktotop = () => {
+      if (window.scrollY > 100) {
+        backtotop.classList.add('active')
+      } else {
+        backtotop.classList.remove('active')
+      }
+    }
+    window.addEventListener('load', toggleBacktotop)
+    onscroll(document, toggleBacktotop)
+  }
 
   /**
    * Mobile nav toggle
@@ -111,16 +129,39 @@ var Isotope = require('isotope-layout');
     }
   });
 
+
   /**
-   * Preloader
+   * Hero type effect
    */
-  let preloader = select('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
+  const typed = select('.typed')
+  if (typed) {
+    let typed_strings = typed.getAttribute('data-typed-items')
+    typed_strings = typed_strings.split(',')
+    new Typed('.typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000
     });
   }
 
+  /**
+   * Skills animation
+   */
+  let skilsContent = select('.skills-content');
+  if (skilsContent) {
+    new Waypoint({
+      element: skilsContent,
+      offset: '80%',
+      handler: function (direction) {
+        let progress = select('.progress .progress-bar', true);
+        progress.forEach((el) => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        });
+      }
+    })
+  }
 
   /**
    * Porfolio isotope and filter
@@ -145,7 +186,7 @@ var Isotope = require('isotope-layout');
           filter: this.getAttribute('data-filter')
         });
         portfolioIsotope.on('arrangeComplete', function () {
-          // AOS.refresh()
+          AOS.refresh()
         });
       }, true);
     }
@@ -185,18 +226,17 @@ var Isotope = require('isotope-layout');
     }
   });
 
-
   /**
    * Animation on scroll
    */
-  // window.addEventListener('load', () => {
-  //   AOS.init({
-  //     duration: 1000,
-  //     easing: 'ease-in-out',
-  //     once: true,
-  //     mirror: false
-  //   })
-  // });
+  window.addEventListener('load', () => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    })
+  });
 
   /**
    * Initiate Pure Counter 
@@ -204,6 +244,3 @@ var Isotope = require('isotope-layout');
   new PureCounter();
 
 })()
-
-
-// AOS.init();

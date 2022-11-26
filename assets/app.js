@@ -11,4 +11,3 @@ import './styles/app.scss';
 import './js/contact.js'
 import './js/animation.js'
 
-
