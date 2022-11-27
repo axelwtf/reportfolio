@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<main
+			id="main">
+
+			<!-- ======= Portfolio Details Section ======= -->
+			<section id="portfolio-details" class="portfolio-details">
+				<div class="container">
+
+					<div class="row gy-4">
+
+						<div class="col-lg-8">
+							<div class="portfolio-details-slider swiper">
+								<div class="swiper-wrapper align-items-center">
+									{% for image in project.images %}
+										<div class="swiper-slide">
+											<img src="{{ vich_uploader_asset( image,'imageFile') }}" class="img-fluid" alt="">
+										</div>
+									{% endfor %}
+								</div>
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="portfolio-info">
+								<h3>{{project.name}}</h3>
+								<ul>
+									<li>
+										<strong>Skill</strong>:
+										{% for skill in project.skill %}
+											{{skill.name}} /
+										{% endfor %}
+									</li>
+									<li>
+										<strong>Client</strong>: ASU Company</li>
+									<li>
+										<strong>Project date</strong>: 01 March, 2020</li>
+									<li>
+										<strong>Project URL</strong>:
+										<a href="{{project.link}}" class="text-white">{{project.link}}</a>
+									</li>
+								</ul>
+							</div>
+							<div class="portfolio-description">
+								<h2>This is an example of portfolio detail</h2>
+								<p>
+									Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+								</p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</section>
+			<!-- End Portfolio Details Section -->
+
+		</main>
+		<!-- End #main -->
+	</body>
+</html>

@@ -32,14 +32,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'text', nullable: true)]
     private $about;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private $infoSkill;
-
     #[Vich\UploadableField(mapping: 'user', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
-
+    
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
+    
+    #[Vich\UploadableField(mapping: 'mycv', fileNameProperty: 'cv')]
+    private ?File $cvFile = null;
+
+    #[ORM\Column(type: 'string',nullable: true)]
+    private ?string $cv = null;
 
     /**
      * @var string The hashed password
@@ -95,18 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getInfoskill(): ?string
-    {
-        return $this->infoSkill;
-    }
-
-    public function setInfoskill(?string $infoSkill): self
-    {
-        $this->infoSkill = $infoSkill;
-
-        return $this;
-    }
-
     public function getAbout(): ?string
     {
         return $this->about;
@@ -146,15 +137,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imageName;
     }
 
-    public function setImageSize(?int $imageSize): void
+
+    public function setCvFile(?File $cvFile = null): void
     {
-        $this->imageSize = $imageSize;
+        $this->cvFile = $cvFile;
+
+        if (null !== $cvFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function getImageSize(): ?int
+    public function getCvFile(): ?File
     {
-        return $this->imageSize;
+        return $this->cvFile;
     }
+
+    public function setCv(?string $cv): void
+    {
+        $this->cv = $cv;
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
 
 
     /**

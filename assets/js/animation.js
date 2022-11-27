@@ -1,12 +1,11 @@
 import GLightbox from 'glightbox';
 import Swiper from 'swiper';
+import 'bs5-lightbox';
 import PureCounter from "@srexi/purecounterjs";
 import AOS from 'aos';
 import Typed from 'typed.js';
 
 var Isotope = require('isotope-layout');
-
-
 
 (function () {
   "use strict";
@@ -76,22 +75,6 @@ var Isotope = require('isotope-layout');
   }
 
   /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
    * Mobile nav toggle
    */
   on('click', '.mobile-nav-toggle', function (e) {
@@ -129,6 +112,15 @@ var Isotope = require('isotope-layout');
     }
   });
 
+  /**
+   * Preloader
+   */
+  let preloader = select('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove()
+    });
+  }
 
   /**
    * Hero type effect
@@ -144,23 +136,6 @@ var Isotope = require('isotope-layout');
       backSpeed: 50,
       backDelay: 2000
     });
-  }
-
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function (direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
   }
 
   /**
@@ -193,21 +168,21 @@ var Isotope = require('isotope-layout');
 
   });
 
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
+  // /**
+  //  * Initiate portfolio lightbox 
+  //  */
+  // const portfolioLightbox = GLightbox({
+  //   selector: '.portfolio-lightbox'
+  // });
 
-  /**
-   * Initiate portfolio details lightbox 
-   */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  });
+  // /**
+  //  * Initiate portfolio details lightbox 
+  //  */
+  // const portfolioDetailsLightbox = GLightbox({
+  //   selector: '.portfolio-details-lightbox',
+  //   width: '90%',
+  //   height: '90vh'
+  // });
 
   /**
    * Portfolio details slider
@@ -241,6 +216,19 @@ var Isotope = require('isotope-layout');
   /**
    * Initiate Pure Counter 
    */
-  new PureCounter();
+  new PureCounter();  
 
 })()
+
+import Lightbox from 'bs5-lightbox';
+
+const options = {
+	keyboard: true,
+	size: 'xl'
+};
+
+document.querySelectorAll('.portfolio-details-lightbox').forEach((el) => el.addEventListener('click', (e) => {
+	e.preventDefault();
+	const lightbox = new Lightbox(el, options);
+	lightbox.show();
+}));

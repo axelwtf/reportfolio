@@ -7,7 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
+import 'swiper/css';
 
-import './js/contact.js'
-import './js/animation.js'
+import './js/contact.js';
+import './js/animation.js';
 

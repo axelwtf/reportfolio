@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use App\Entity\Contact;
+use App\Entity\Projects;
 use App\Form\ContactType;
 use App\Service\MailService;
 use App\Repository\UserRepository;
@@ -59,6 +60,16 @@ class HomeController extends AbstractController
             'skills' => $skills->findAll(),
             'projects' => $projects->findAll(),
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('portfolio-details/{id}', name: 'portfolio-details')]
+    public function details(Projects $project): Response
+    {
+        
+
+        return $this->render('portfolio-details.html.twig', [
+            'project' => $project
         ]);
     }
 }

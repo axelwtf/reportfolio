@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -24,7 +25,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname'),
             EmailField::new('email'),
             TextEditorField::new('about'),
-            TextEditorField::new('infoSkill'),
+            TextField::new('cvFile')->setFormType(VichFileType::class)->onlyOnForms(),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
             ImageField::new('imageName')->setBasePath('/images/user')->onlyOnIndex(),
         ];

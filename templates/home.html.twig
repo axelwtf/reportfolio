@@ -6,10 +6,12 @@
     <main id="main">
         {{ include('partials/_header.html.twig') }}
         {{ include('partials/_about.html.twig') }}  
-        {# {{ include('partials/_resume.html.twig') }} #}
         {{ include('partials/_portfolio.html.twig') }}
-        {{ include('partials/_contact.html.twig') }}
-        {# {{ include('partials/_contactTest.html.twig') }} #}
+        {# {{ include('partials/_contact.html.twig') }} #}
+        {% include "partials/_contactTest.html.twig" %}
         {{ include('partials/_footer.html.twig') }}
     </main>
+    
 {% endblock %}
+
+
